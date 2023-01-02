@@ -1,0 +1,128 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "carcollection",
+    "dateExported": "2023-01-02T02:13:58.294Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "d75470e0-0c80-4354-979b-55838af8f3ae",
+            "colId": "43fab227-131e-4988-beab-239d039b8e0c",
+            "containerId": "",
+            "name": "Post Car",
+            "url": "localhost:8000/cars",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-01-01T13:22:28.978Z",
+            "modified": "2023-01-01T13:23:24.832Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"make\": \"test\",\n  \"year\": 2022,\n  \"transmission_type\": \"automatic\",\n  \"size\": \"MIDSIZE\",\n  \"style\": \"Coupe\",\n  \"price\": 30000\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8412ccec-1ff0-4b12-ad58-ec58fcb5cac9",
+            "colId": "43fab227-131e-4988-beab-239d039b8e0c",
+            "containerId": "",
+            "name": "Get All Car",
+            "url": "localhost:8000/cars?page=1&limit=10",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-01-01T13:23:37.643Z",
+            "modified": "2023-01-02T02:10:25.222Z",
+            "headers": [],
+            "params": [
+                {
+                    "name": "page",
+                    "value": "1",
+                    "isPath": false
+                },
+                {
+                    "name": "limit",
+                    "value": "10",
+                    "isPath": false
+                },
+                {
+                    "name": "make",
+                    "value": "Audi",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "year",
+                    "value": "1992",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "transmission_type",
+                    "value": "automatic",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "size",
+                    "value": "Compact",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "style",
+                    "value": "CONVERTIBLE",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "price",
+                    "value": "2000",
+                    "isDisabled": true,
+                    "isPath": false
+                },
+                {
+                    "name": "fff",
+                    "value": "aaa",
+                    "isDisabled": true,
+                    "isPath": false
+                }
+            ],
+            "tests": []
+        },
+        {
+            "_id": "3ec1ea07-8d50-4a15-8706-91872240c7d8",
+            "colId": "43fab227-131e-4988-beab-239d039b8e0c",
+            "containerId": "",
+            "name": "Delete Car",
+            "url": "localhost:8000/cars/63b1b31b249b756f9bcc63f",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-01-01T13:28:46.701Z",
+            "modified": "2023-01-01T16:22:24.456Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "426341a3-464f-4a6e-b1ee-968d807b6f22",
+            "colId": "43fab227-131e-4988-beab-239d039b8e0c",
+            "containerId": "",
+            "name": "Put Car",
+            "url": "localhost:8000/cars/63b23d2eb0727ba752198b48",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2023-01-02T02:10:45.191Z",
+            "modified": "2023-01-02T02:12:09.610Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"make\": \"test\",\n  \"year\": 2022,\n  \"transmission_type\": \"automatic\",\n  \"size\": \"MIDSIZE\",\n  \"style\": \"Coupe\",\n  \"price\": 9999\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
