@@ -1,6 +1,7 @@
 import Joi from "joi";
 
 export const getAllCarsQuerySchema = Joi.object({
+  _id: Joi.string().hex().length(24),
   page: Joi.number().default(1),
   limit: Joi.number().default(20),
   make: Joi.string().uppercase().trim(),
@@ -21,6 +22,7 @@ export const getAllCarsQuerySchema = Joi.object({
 });
 
 export const createCarQuerySchema = Joi.object({
+  _id: Joi.string().hex().length(24),
   make: Joi.string().uppercase().trim().required(),
   year: Joi.number().min(1).max(2023).required(),
   transmission_type: Joi.string()

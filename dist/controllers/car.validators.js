@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.carIdParamSchema = exports.createCarQuerySchema = exports.getAllCarsQuerySchema = void 0;
 const joi_1 = __importDefault(require("joi"));
 exports.getAllCarsQuerySchema = joi_1.default.object({
+    _id: joi_1.default.string().hex().length(24),
     page: joi_1.default.number().default(1),
     limit: joi_1.default.number().default(20),
     make: joi_1.default.string().uppercase().trim(),
@@ -19,6 +20,7 @@ exports.getAllCarsQuerySchema = joi_1.default.object({
     price: joi_1.default.number(),
 });
 exports.createCarQuerySchema = joi_1.default.object({
+    _id: joi_1.default.string().hex().length(24),
     make: joi_1.default.string().uppercase().trim().required(),
     year: joi_1.default.number().min(1).max(2023).required(),
     transmission_type: joi_1.default.string()

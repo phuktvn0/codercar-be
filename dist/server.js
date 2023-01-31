@@ -10,8 +10,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const app = (0, express_1.default)();
 const PORT = 8000;
-const MONGODB_URI = process.env.MONGO_URI ||
-    "mongodb+srv://phuktvn0:Qq123213@phuktvn0.xwgmvjg.mongodb.net/coder_car";
+const MONGODB_URI = "mongodb+srv://phuktvn0:Qq123213@phuktvn0.xwgmvjg.mongodb.net/coder_car";
 mongoose_1.default.set("strictQuery", false);
 mongoose_1.default
     .connect(MONGODB_URI)

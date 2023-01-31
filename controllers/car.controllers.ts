@@ -8,15 +8,6 @@ import {
   carIdParamSchema,
 } from "./car.validators";
 
-// const transmissionTypes: Array<string> = [
-//   "MANUAL",
-//   "AUTOMATIC",
-//   "AUTOMATED_MANUAL",
-//   "DIRECT_DRIVE",
-//   "UNKNOWN",
-// ];
-
-//Create a Car
 export async function createCar(
   req: express.Request,
   res: express.Response,
@@ -29,8 +20,6 @@ export async function createCar(
     if (error) {
       throw createError(httpStatus.BAD_REQUEST, error.message);
     }
-    // const { make, year, transmission_type, size, style, price } = value;
-    // console.log(value);
 
     const created = await Car.create(value);
     const responseData = {
@@ -45,7 +34,6 @@ export async function createCar(
   }
 }
 
-//Get all foo
 export async function getAllCars(
   req: express.Request,
   res: express.Response,
@@ -58,16 +46,15 @@ export async function getAllCars(
     if (error) {
       throw createError(httpStatus.BAD_REQUEST, error.message);
     }
-    //mongoose query
     const { page, limit, ...filterValue } = value;
-
-    // console.log(filterValue);
 
     let totalPages = 0;
     let listOfCars = [];
 
-    // listOfCars = await Car.find().where("year").equals(2011).exec();
     listOfCars = await Car.find(filterValue);
+    if (listOfCars.length === 0) {
+      throw createError(httpStatus.NOT_FOUND, "Car not found!");
+    }
     totalPages = Math.ceil(listOfCars.length / limit);
 
     const offset: number = limit * (page - 1);
@@ -88,7 +75,6 @@ export async function getAllCars(
   }
 }
 
-//Update a foo
 export async function updateCarById(
   req: express.Request,
   res: express.Response,
@@ -103,24 +89,26 @@ export async function updateCarById(
     if (error) {
       throw createError(httpStatus.BAD_REQUEST, error.message);
     }
-
-    //mongoose query
-    const updated = await Car.findByIdAndUpdate(id, value, {
-      new: true,
-    });
-    const responseData = {
-      data: {
-        message: "Update Car Successfully!",
-        car: updated,
-      },
-    };
-    res.status(200).send(responseData);
+    const findCar = await Car.findById(id);
+    if (!findCar) {
+      throw createError(httpStatus.NOT_FOUND, "Car not found!");
+    } else {
+      const updated = await Car.findByIdAndUpdate(id, value, {
+        new: true,
+      });
+      const responseData = {
+        data: {
+          message: "Update Car Successfully!",
+          car: updated,
+        },
+      };
+      res.status(200).send(responseData);
+    }
   } catch (err) {
     next(err);
   }
 }
 
-//Delete foo
 export async function deleteCarById(
   req: express.Request,
   res: express.Response,
@@ -134,11 +122,9 @@ export async function deleteCarById(
     const { id } = value;
 
     const findCar = await Car.findById(id);
-    // console.log(findCar);
     if (!findCar) {
       throw createError(httpStatus.NOT_FOUND, "Car not exists!");
     }
-    //mongoose query
     const target = await Car.findByIdAndDelete(id, { new: true });
 
     const responseData = {
@@ -149,8 +135,6 @@ export async function deleteCarById(
     };
     res.status(200).send(responseData);
   } catch (err) {
-    // console.log(err);
-
     next(err);
   }
 }

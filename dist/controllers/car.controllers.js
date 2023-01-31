@@ -65,6 +65,9 @@ function getAllCars(req, res, next) {
             let totalPages = 0;
             let listOfCars = [];
             listOfCars = yield Car_1.default.find(filterValue);
+            if (listOfCars.length === 0) {
+                throw (0, http_errors_1.default)(http_status_1.default.NOT_FOUND, "Car not found!");
+            }
             totalPages = Math.ceil(listOfCars.length / limit);
             const offset = limit * (page - 1);
             listOfCars = listOfCars.slice(offset, offset + limit);
@@ -94,16 +97,22 @@ function updateCarById(req, res, next) {
             if (error) {
                 throw (0, http_errors_1.default)(http_status_1.default.BAD_REQUEST, error.message);
             }
-            const updated = yield Car_1.default.findByIdAndUpdate(id, value, {
-                new: true,
-            });
-            const responseData = {
-                data: {
-                    message: "Update Car Successfully!",
-                    car: updated,
-                },
-            };
-            res.status(200).send(responseData);
+            const findCar = yield Car_1.default.findById(id);
+            if (!findCar) {
+                throw (0, http_errors_1.default)(http_status_1.default.NOT_FOUND, "Car not found!");
+            }
+            else {
+                const updated = yield Car_1.default.findByIdAndUpdate(id, value, {
+                    new: true,
+                });
+                const responseData = {
+                    data: {
+                        message: "Update Car Successfully!",
+                        car: updated,
+                    },
+                };
+                res.status(200).send(responseData);
+            }
         }
         catch (err) {
             next(err);

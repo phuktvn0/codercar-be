@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, ObjectId } from "mongoose";
 
 interface data {
+  _id?: ObjectId;
   make: string;
   year: number;
   transmission_type: string;
